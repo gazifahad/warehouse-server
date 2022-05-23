@@ -89,7 +89,7 @@ run().catch(console.dir);
 
 // backend initialize
 app.get("/", (req, res) => {
-  res.send("welcome to warehouse");
+  res.send("running warehouse");
 });
 
 app.listen(port, () => {
