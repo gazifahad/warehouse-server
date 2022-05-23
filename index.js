@@ -49,8 +49,8 @@ async function run() {
     app.get("/addedby/:email", async (req, res) => {
       const email = req.params.email;
       const filter = { addedby:email};
-      const rslt = await warehouseCollection.find(filter).toArray();
-      res.send(rslt);
+      const result = await warehouseCollection.find(filter).toArray();
+      res.send(result);
     });
 
     // create one item
