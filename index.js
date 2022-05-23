@@ -30,7 +30,7 @@ async function run() {
     // http://localhost:5000/items
     // password:hPjqCjwnLXVnidbQ
     //user: fahad5
-    app.get("/items", async (req, res) => {
+    app.get("https://lit-plains-40003.herokuapp.com/items", async (req, res) => {
       const query = {};
       const result = await warehouseCollection.find(query).toArray();
       res.send(result);
@@ -38,7 +38,7 @@ async function run() {
 
     // find one item by id
     // http://localhost:5000/item/6274a3425a04790168facc8c
-    app.get("/item/:id", async (req, res) => {
+    app.get("https://lit-plains-40003.herokuapp.com/item/:id", async (req, res) => {
       const id = req.params.id;
       const filter = { _id: ObjectId(id) };
       const result = await warehouseCollection.findOne(filter);
@@ -46,7 +46,7 @@ async function run() {
     });
     // find one item by email
     // http://localhost:5000/addedby/abdullah71faisal@gamil.com
-    app.get("/addedby/:email", async (req, res) => {
+    app.get("https://lit-plains-40003.herokuapp.com/addedby/:email", async (req, res) => {
       const email = req.params.email;
       const filter = { addedby:email};
       const result = await warehouseCollection.find(filter).toArray();
@@ -55,7 +55,7 @@ async function run() {
 
     // create one item
     // http://localhost:5000/item
-    app.post("/item", async (req, res) => {
+    app.post("https://lit-plains-40003.herokuapp.com/item", async (req, res) => {
       const item = req.body;
       const result = await warehouseCollection.insertOne(item);
       res.send({ message: "item added" });
@@ -63,7 +63,7 @@ async function run() {
 
     //update item
     // http://localhost:5000/item/6274a3425a04790168facc8c
-    app.put("/item/:id", async (req, res) => {
+    app.put("https://lit-plains-40003.herokuapp.com/item/:id", async (req, res) => {
       const id = req.params.id;
       const filter = { _id: ObjectId(id) };
       const updateItem = {        
@@ -75,7 +75,7 @@ async function run() {
 
     // delete item
     // http://localhost:5000/item/6274a3425a04790168facc8c
-    app.delete("/item/:id", async (req, res) => {
+    app.delete("https://lit-plains-40003.herokuapp.com/item/:id", async (req, res) => {
         const id = req.params.id;
         const filter = { _id: ObjectId(id) };
         const result = await warehouseCollection.deleteOne(filter);  
