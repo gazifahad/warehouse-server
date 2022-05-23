@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 const uri = `mongodb://${process.env.USER_NAME}:${process.env.USER_KEY}@cluster5.swayk.mongodb.net/?retryWrites=true&w=majority`;
-// const uri = "mongodb+srv://process.env.REACT_APP_user:process.env.REACT_APP_password@cluster5.swayk.mongodb.net/?retryWrites=true&w=majority";
+
 
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
@@ -23,10 +23,8 @@ async function run() {
     await client.connect();
     const warehouseCollection = client.db("warehousedb").collection("fruits");
   
-    // const userCollection=client.db("foodexpress").collection('user');
-    // const user={name:'fahad', email:'sasd'};
-    // const result=await userCollection.insertOne(user);
-    // console.log(`user insterted ${result.insertedId}`);
+    
+  
 
     // get all items
     // http://localhost:5000/items
@@ -51,8 +49,8 @@ async function run() {
     app.get("/addedby/:email", async (req, res) => {
       const email = req.params.email;
       const filter = { addedby:email};
-      const result = await warehouseCollection.find(filter).toArray();
-      res.send(result);
+      const rslt = await warehouseCollection.find(filter).toArray();
+      res.send(rslt);
     });
 
     // create one item
