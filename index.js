@@ -9,8 +9,8 @@ require("dotenv").config();
 app.use(cors());
 app.use(express.json());
 
-const uri = "mongodb+srv://fahad10:Nq2S57GBJC5Jjmee@cluster8.4aijm.mongodb.net/?retryWrites=true&w=majority";
-// const uri = `mongodb://${process.env.USER_NAME}:${process.env.USER_KEY}@cluster8.4aijm.mongodb.net/?retryWrites=true&w=majority`;
+// const uri = "mongodb+srv://fahad10:Nq2S57GBJC5Jjmee@cluster8.4aijm.mongodb.net/?retryWrites=true&w=majority";
+const uri = `mongodb://${process.env.USER_NAME}:${process.env.USER_KEY}@cluster8.4aijm.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -23,7 +23,7 @@ async function run() {
     const warehouseCollection = client.db("warehousedb").collection("fruits");
 
     // get all items
-    // http://localhost:3000/items
+    // http://localhost:5000/items
     app.get("/items", async (req, res) => {
       const query = {};
       const result = await warehouseCollection.find(query).toArray();
@@ -31,7 +31,7 @@ async function run() {
     });
 
     // find one item by id
-    // http://localhost:3000/item/6274a3425a04790168facc8c
+    // http://localhost:5000/item/6274a3425a04790168facc8c
     app.get("/item/:id", async (req, res) => {
       const id = req.params.id;
       const filter = { _id: ObjectId(id) };
@@ -48,7 +48,7 @@ async function run() {
     });
 
     // create one item
-    // http://localhost:3000/item
+    // http://localhost:5000/item
     app.post("/item", async (req, res) => {
       const item = req.body;
       const result = await warehouseCollection.insertOne(item);
@@ -56,7 +56,7 @@ async function run() {
     });
 
     //update item
-    // http://localhost:3000/item/6274a3425a04790168facc8c
+    // http://localhost:5000/item/6274a3425a04790168facc8c
     app.put("/item/:id", async (req, res) => {
       const id = req.params.id;
       const filter = { _id: ObjectId(id) };
@@ -68,7 +68,7 @@ async function run() {
     });
 
     // delete item
-    // http://localhost:3000/item/6274a3425a04790168facc8c
+    // http://localhost:5000/item/6274a3425a04790168facc8c
     app.delete("/item/:id", async (req, res) => {
         const id = req.params.id;
         const filter = { _id: ObjectId(id) };
