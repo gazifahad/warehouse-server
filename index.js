@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 // const uri = "mongodb+srv://fahad10:Nq2S57GBJC5Jjmee@cluster8.4aijm.mongodb.net/?retryWrites=true&w=majority";
-const uri = `mongodb+srv://${process.env.USER_NAME}:${process.env.USER_KEY}@cluster8.4aijm.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb://${process.env.USER_NAME}:${process.env.USER_KEY}@cluster8.4aijm.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
